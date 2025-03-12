@@ -17,7 +17,13 @@ Currently in development (working on core features and layout)
 ## Setup Instructions
 **Clone the repository:** `git clone <repository-url>`
 
+## Backend Setup
+1. Navigate to the server folder: `cd server`
+2. Install dependencies: `npm install`
+3. Create a `.env` file and add your MongoDB URI:
+4. Run the server: `node server.js`
+
 **Frontend Setup:**
-   - Open `client/index.html` in your browser.
+- Open `client/index.html` in your browser.
 
 ## Environment Variables (in server/.env)

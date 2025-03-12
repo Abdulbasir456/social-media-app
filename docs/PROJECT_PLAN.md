@@ -16,6 +16,10 @@
 - **Follow System:** Allow users to follow/unfollow and see a feed of posts.
 - **Search Functionality:** Implement search for users and posts.
 
+### Milestone 3: Advanced Features
+- **Real-Time Updates:** Integrate live notifications using WebSockets.
+- **Media Uploads:** Add image upload support for posts.
+- **UI Enhancements:** Improve frontend design and responsiveness.
 
 ## Timeline
 - **Week 1:** Set up the project structure, basic server, and user authentication.
@@ -23,3 +27,15 @@
 - **Week 3:** Add interactions (likes, comments) and follow functionality.
 - **Week 4:** Build the frontend interface and integrate search functionality.
 - **Week 5:** Integrate advanced features and perform thorough testing.
+
+## Tools and Technologies
+- **Version Control:** Git & GitHub
+- **Development Environment:** Visual Studio Code
+- **Backend:** Node.js, Express, MongoDB
+- **Frontend:** HTML, CSS, JavaScript
+
+
+## Current Progress
+- MongoDB Atlas connected
+- Environment configured using dotenv
+- Starting user authentication development
