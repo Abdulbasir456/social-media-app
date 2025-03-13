@@ -8,3 +8,8 @@
 ### Added
 - Connected MongoDB Atalas to the backend using Mongoose.
 - Added environment variable support with dotenv.
+
+## [0.3.0] - 2025-03-13
+### Added
+- User registration API with password hasing and MongoDB storage.
+

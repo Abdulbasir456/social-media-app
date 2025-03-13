@@ -10,9 +10,9 @@ A full-stack social media application built with:
 ## Project Status
 
 Currently in development (working on core features and layout)
+Currently in development. User registration completed; working on login and authentication flow.
 
 ## Folder Structure
-
 
 ## Setup Instructions
 **Clone the repository:** `git clone <repository-url>`
