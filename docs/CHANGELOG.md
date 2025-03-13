@@ -8,6 +8,3 @@
 ### Added
 - Connected MongoDB Atalas to the backend using Mongoose.
 - Added environment variable support with dotenv.
-
-
-
