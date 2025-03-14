@@ -9,14 +9,29 @@
 <body>
     <div class="container">
         <h1>Social Media App</h1>
-        <div id="auth">
-            <input type="text" id="username" placeholder="Username">
-            <input type="password" id="password" placeholder="Password">
-            <button id="registerBtn">Register</button>
-            <button id="loginBtn">Login</button>
+        <div class="toggle-switch">
+            <input type="radio" id="loginToggle" name="authToggle" checked>
+            <label for="loginToggle" class="toggle-label">Login</label>
+            <input type="radio" id="registerToggle" name="authToggle">
+            <label for="registerToggle" class="toggle-label">Register</label>
         </div>
-    </div>
+            
+            <!--Login Form-->
+            <div id="loginForm" class="auth-form">
+                <input type="email" id="loginEmail" placeholder="Email">
+                <input type="password" id="loginPassword" placeholder="Password">
+                <button id="loginBtn">Login</button>
+            </div>
 
+            <!--Registration Form-->
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <input type="text" id="regUsername" placeholder="Username">
+                <input type="email" id="regEmail" placeholder="Email">
+                <input type="password" id="regPassword" placeholder="Password">
+                <button id="registerBtn">Register</button>
+            </div>    
+    </div>
+    
     <script src="js/main.js"></script>  
 </body>
 </html>

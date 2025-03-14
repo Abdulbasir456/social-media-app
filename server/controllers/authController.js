@@ -3,9 +3,16 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 exports.register = async (req, res) => {
-    const {username, password } = req.body;
+    const {username, email, password } = req.body;
     try {
-        const user = new User({ username, password});
+
+        const existingUser = await User.findOne({ $or: [{username}, {email}] });
+        if (existingUser) {
+            return res.status(400).json({ message: 'Username or email already exists' });
+        }
+
+        
+        const user = new User({ username, email, password});
         await user.save();
         res.status(201).json({message: 'User registered' });
     } catch (err) {
@@ -15,11 +22,11 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-    const {username, password } = req.body;
+    const {email, password } = req.body;
     
     try {
         // Check if the user exists
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ email });
         if (!user) {
             return res.status(400).json({ message: 'User not found' });
         }
