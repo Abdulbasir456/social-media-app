@@ -13,3 +13,6 @@
 ### Added
 - User registration API with password hasing and MongoDB storage.
 
+## [0.4.0] - 2025-03-14
+### Added
+- User login functionality with JWT token generation and validation.

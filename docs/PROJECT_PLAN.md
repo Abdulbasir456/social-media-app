@@ -36,10 +36,6 @@
 
 
 ## Current Progress
-- MongoDB Atlas connected
-- Environment configured using dotenv
-- User registration API implemented
-  - Users can register with email, and password
-  - Passwords are hashed using bcrypt before saving
-  - Data stored in MongoDB Atlas
-- Login functionality in progress
+- MongoDB Atlas connected.
+- Environment configured using dotenv.
+- User registration and login functionality implemented with JWT.
