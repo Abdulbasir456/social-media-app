@@ -39,3 +39,5 @@
 - MongoDB Atlas connected.
 - Environment configured using dotenv.
 - User registration and login functionality implemented with JWT.
+- UI improved: toggle forms, responsive layout, validation styling.
+- Profile functionality next

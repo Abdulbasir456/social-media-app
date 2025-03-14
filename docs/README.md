@@ -11,6 +11,8 @@ A full-stack social media application built with:
 
 Currently in development (working on core features and layout)
 Currently in development (User authentication - registration and login completed)
+UI enhancements added: toggle switch between login/register forms, modern styling, and responsive layout.
+User profile functionality is next.
 
 ## Folder Structure
 

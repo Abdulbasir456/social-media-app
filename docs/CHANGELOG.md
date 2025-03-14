@@ -16,3 +16,9 @@
 ## [0.4.0] - 2025-03-14
 ### Added
 - User login functionality with JWT token generation and validation.
+
+## [0.5.0] - 2025-03-14
+### Added
+- Email vaidation in registration.
+- UI enhancements: toggle switch for login/register, modern input fields, responsive design.
+
