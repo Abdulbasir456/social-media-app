@@ -73,7 +73,7 @@ loginBtn.addEventListener('click', async () => {
             // Save the token in localStorage
             localStorage.setItem('token', data.token);
             alert('Login successful');
-            window.location.href= '/dashboard.html';
+            window.location.href= './dashboard.html';
         } else {
             alert(data.message || 'Login failed');
         }

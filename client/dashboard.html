@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Social Media App</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to Your Dashboard</h1>
+    <div id="dashboard">
+      <!-- Profile Section -->
+      <div id="profile">
+        <h2>Your Profile</h2>
+        <p id="profileBio">Loading bio...</p>
+        <p id="profilePicture">Loading profile picture...</p>
+      </div>
+
+      <!-- Create Post Section -->
+      <div id="createPost">
+        <h2>Create a Post</h2>
+        <textarea id="postContent" placeholder="What's on your mind?"></textarea>
+        <button id="postBtn">Post</button>
+      </div>
+
+      <!-- Feed Section -->
+      <div id="feed">
+        <h2>Your Feed</h2>
+        <div id="posts">
+          <!-- Posts will be dynamically added here -->
+        </div>
+      </div>
+    </div>
+    <button id="logoutBtn">Logout</button>
+  </div>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
