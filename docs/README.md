@@ -8,11 +8,12 @@ A full-stack social media application built with:
 - **Authentication**: JWT, bcrypt
 
 ## Project Status
-
-Currently in development (working on core features and layout)
-Currently in development (User authentication - registration and login completed)
-UI enhancements added: toggle switch between login/register forms, modern styling, and responsive layout.
-User profile functionality is next.
+- **User authentication (registration & login) completed**
+- **User profile functionality added** 
+  - Users can now update their bio and profile picture.  
+  - The dashboard fetches and displays the latest profile data.  
+- **UI enhancements** added for a more modern experience.  
+- **Next feature:** Post interactions (likes & comments). 
 
 ## Folder Structure
 

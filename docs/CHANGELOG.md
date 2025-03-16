@@ -22,3 +22,10 @@
 - Email vaidation in registration.
 - UI enhancements: toggle switch for login/register, modern input fields, responsive design.
 
+## [0.6.0] - 2025-03-16
+### Added
+- User profile update feature (bio & profile picture).
+- Dashboard now automatically fetches and displays profile data.
+- Modern UI styles added for profile update section.
+
+
