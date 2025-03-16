@@ -292,3 +292,72 @@ h1 {
   }
 }
 
+
+
+/* Update Profile Section */
+#updateProfile {
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: auto;
+}
+
+#updateProfile h3 {
+  font-size: 18px;
+  color: #262626;
+  text-align: center;
+  font-weight: 600;
+}
+
+#updateProfile input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #f8f8f8;
+  transition: border-color 0.3s ease;
+  outline: none;
+}
+
+#updateProfile input:focus {
+  border-color: #3897f0;
+  background-color: #fff;
+}
+
+#updateProfileBtn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #3897f0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease-in-out;
+}
+
+#updateProfileBtn:hover {
+  background-color: #2680d9;
+}
+
+#updateProfileBtn:active {
+  transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #updateProfile {
+    width: 90%;
+    max-width: none;
+  }
+}
+
+
