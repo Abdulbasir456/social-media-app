@@ -42,3 +42,4 @@
 - UI improved: toggle forms, responsive layout, validation styling.
 - Profile functionality next
 - User Profile Update (Bio & Profile Picture) – Implemented
+**Post Creation and Fetching - implemented.**

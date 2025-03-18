@@ -28,4 +28,10 @@
 - Dashboard now automatically fetches and displays profile data.
 - Modern UI styles added for profile update section.
 
+## [0.7.0] - 2025-03-18
+### Added
+- **Post creation feature**: Users can now create posts. 
+- **Fetch posts**: Users can view their posts in the feed, sorted lates first.
+
+
 

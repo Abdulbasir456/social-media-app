@@ -12,8 +12,10 @@ A full-stack social media application built with:
 - **User profile functionality added** 
   - Users can now update their bio and profile picture.  
   - The dashboard fetches and displays the latest profile data.  
-- **UI enhancements** added for a more modern experience.  
-- **Next feature:** Post interactions (likes & comments). 
+- **Post creation and fetching added**
+  - Users can create posts.
+  - Users can view their posts in the feed, sorted latest first.
+
 
 ## Folder Structure
 

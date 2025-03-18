@@ -31,4 +31,17 @@
   - **Request Body:** `{ "bio": "string", "profilePicture": "string" }`
   - **Response:** `{ "message": "Profile updated successfully" }`
 
-  
+
+### Posts
+
+- **POST** `/posts`  
+  - **Description:** Create a new post.  
+  - **Headers:** `{ "Authorization": "Bearer <JWT_TOKEN>" }`  
+  - **Request Body:** `{ "content": "string" }`  
+  - **Response:** `{ "message": "Post created successfully", "post": { "id": "string", "content": "string", "createdAt": "date" } }`  
+
+- **GET** `/posts`  
+  - **Description:** Fetch all posts of authenticated user (latest first).  
+  - **Headers:** `{ "Authorization": "Bearer <JWT_TOKEN>" }`  
+  - **Response:** `[{ "id": "string", "content": "string", "createdAt": "date" }]` 
+
