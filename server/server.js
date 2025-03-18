@@ -14,9 +14,12 @@ connectDB();
 // Routes
 const authRoutes = require('./routes/authRoutes');
 const profileRoutes = require('./routes/profileRoutes');
+const postRoutes = require('./routes/postRoutes');
+
 
 app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);
+app.use('/api/posts', postRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 5000;
