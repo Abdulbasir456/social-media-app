@@ -9,7 +9,7 @@ const postSchema = new mongoose.Schema({
 
     content: {
         type: String,
-        required: true,
+        required: false,// Allow empty content
         trim: true
     },
 
@@ -17,8 +17,13 @@ const postSchema = new mongoose.Schema({
 
         type: Date,
         default: Date.now
-    }
+    },
 
+    image: {
+        type: String,
+        default: null
+    }
+        
 });
 
 module.exports = mongoose.model('Post', postSchema);

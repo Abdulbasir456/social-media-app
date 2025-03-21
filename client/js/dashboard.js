@@ -17,7 +17,6 @@ if (!token) {
   window.location.href = '/index.html';
 }
 
-
 // Fetch User Profile
 const fetchProfile = async () => {
     try {
@@ -27,7 +26,7 @@ const fetchProfile = async () => {
             }
         });
 
-        const data = await response.json();
+        const data = await response.json();  
         if (data.bio) {
             profileBio.textContent = data.bio;
         }
@@ -35,10 +34,13 @@ const fetchProfile = async () => {
         if (data.profilePicture) {
             profilePicture.textContent = `Profile Picture: ${data.profilePicture}`;
         }
+            
+
     } catch (err) {
         console.error('Failed to fetch profile:', err);
     }
 };
+
 
 updateProfileBtn.addEventListener('click', async () => {
     const bio = newBio.value;
@@ -59,6 +61,7 @@ updateProfileBtn.addEventListener('click', async () => {
             body: JSON.stringify({ bio, profilePicture: profilePictureUrl }),
         });
         const data = await response.json();
+        
         if (data.bio) {
             profileBio.textContent = data.bio;
         }
@@ -74,41 +77,37 @@ updateProfileBtn.addEventListener('click', async () => {
 });
 
 
-// Create a new post
+
 postBtn.addEventListener('click', async () => {
-    const content = postContent.value.trim();
-    if (!content) {
-        alert('Post cannot be empty!');
-        return;
+    
+    const content = document.getElementById('postContent').value;
+    const image = document.getElementById('postImage').files[0]; // input type="file"
+
+    const formData = new FormData();
+    formData.append('content', content);
+    if (image) {
+        formData.append('image', image);
     }
 
     try {
         const response = await fetch('http://localhost:5000/api/posts', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
+                
+                 'Authorization': `Bearer ${token}`,
+                // Let fetch auto set it to multipart/form-data
             },
-            body: JSON.stringify({ content }),
+            body: formData
         });
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || 'Failed to create post');
-        }
-
-        postContent.value = '';
-        fetchPosts(); // Refresh posts
-    }
-    catch (err) {
+        const result = await response.json();
+        console.log('Post created!', result);
+    } catch (err) {
         console.error('Failed to create post', err);
-        alert(err.message);
     }
 });
 
 
-
-// Fetch all posts
 const fetchPosts = async () => {
     try {
         const response = await fetch('http://localhost:5000/api/posts', {
@@ -119,26 +118,32 @@ const fetchPosts = async () => {
 
         const posts = await response.json();
         postsContainer.innerHTML = '';
-
+ 
         posts.forEach(post => {
             const postElement = document.createElement('div');
             postElement.classList.add('post');
+
+            let imageHTML = '';
+            if (post.image) {
+                imageHTML = `<img src="http://localhost:5000${post.image}" alt="Post image" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">`;
+            }
+
             postElement.innerHTML = `
-            <p><strong>${post.userId.username}</strong> . <small>${new Date(post.createdAt).toLocaleString()}</small></p>
-            <p>${post.content}</p>
+            <p><strong>${post.userId?.username || 'Unknown User'}</strong> · <small>${new Date(post.createdAt).toLocaleString()}</small></p>
+            <p>${post.content || ''}</p>
+            ${imageHTML}
             <hr>
             `;
 
-            postsContainer.appendChild(postElement);    
+            postsContainer.appendChild(postElement);
         });
+
 
     } catch (err) {
         console.error('Failed to fetch posts:', err);
 
     }
 };
-
-
 
 // Logout
 logoutBtn.addEventListener('click', () => {
@@ -147,5 +152,5 @@ logoutBtn.addEventListener('click', () => {
   });
 
 // Fetch profile and posts initially
-fetchProfile();
 fetchPosts();
+fetchProfile();
