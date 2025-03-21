@@ -43,3 +43,6 @@
 - Profile functionality next
 - User Profile Update (Bio & Profile Picture) – Implemented
 **Post Creation and Fetching - implemented.**
+**Image Upload for Posts – Implemented.**  
+**Post Display Styling – Improved.**  
+**Responsive Dashboard – Implemented.**

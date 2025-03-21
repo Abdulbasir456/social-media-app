@@ -15,6 +15,11 @@ A full-stack social media application built with:
 - **Post creation and fetching added**
   - Users can create posts.
   - Users can view their posts in the feed, sorted latest first.
+  - Improved styling for better post display.
+  **UI Enhancements:**
+  - Dashboard page is now fully responsive.
+  - Post display styling optimised for different screen sizes.
+  **Next feature:** Post interactions (likes & comments).
 
 
 ## Folder Structure

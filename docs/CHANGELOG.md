@@ -33,5 +33,15 @@
 - **Post creation feature**: Users can now create posts. 
 - **Fetch posts**: Users can view their posts in the feed, sorted lates first.
 
+## [0.8.0] - 2025-03-19
+### Added
+- **Image upload support for posts**
+- **Improved styling for post display**
+
+## [0.9.0] - 2025-03-21
+### Added
+- **Responsive design for dashboard page**
+- **Optimised post display for different screen sizes**
+
 
 
