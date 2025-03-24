@@ -43,5 +43,9 @@
 - **Responsive design for dashboard page**
 - **Optimised post display for different screen sizes**
 
+## [0.10.0] - 2025-03-24
+### Added
+- **Like functionality for posts**
+- **Updated UI for like button interaction**
 
 

@@ -19,7 +19,9 @@ A full-stack social media application built with:
   **UI Enhancements:**
   - Dashboard page is now fully responsive.
   - Post display styling optimised for different screen sizes.
-  **Next feature:** Post interactions (likes & comments).
+- **Like functionality added**  
+  - Users can like their own posts.  
+  - Likes update dynamically on the UI.
 
 
 ## Folder Structure

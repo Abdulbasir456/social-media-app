@@ -45,3 +45,12 @@
   - **Headers:** `{ "Authorization": "Bearer <JWT_TOKEN>" }`  
   - **Response:** `[{ "id": "string", "content": "string", "createdAt": "date" }]` 
 
+
+### Post Interactions  
+
+- **POST** `/posts/:id/like`  
+  - **Description:** Toggle like on a post.  
+  - **Headers:** `{ "Authorization": "Bearer <JWT_TOKEN>" }`  
+  - **Response:** `{  "success": true, "likesCount": 5, "liked": true }`  
+
+
