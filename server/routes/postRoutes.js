@@ -11,4 +11,6 @@ router.post('/', authMiddleware, upload.single('image'), postController.createPo
 // Get all posts
 router.get('/', authMiddleware, postController.getPosts);
 
+router.post('/:id/like', authMiddleware, postController.toggleLike);
+
 module.exports = router;

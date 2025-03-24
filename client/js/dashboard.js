@@ -132,18 +132,37 @@ const fetchPosts = async () => {
             <p><strong>${post.userId?.username || 'Unknown User'}</strong> · <small>${new Date(post.createdAt).toLocaleString()}</small></p>
             <p>${post.content || ''}</p>
             ${imageHTML}
+            <p>❤️ ${post.likes?.length || 0} <button class="like-btn" data-id="${post._id}">Like</button></p>
             <hr>
             `;
-
             postsContainer.appendChild(postElement);
         });
-
 
     } catch (err) {
         console.error('Failed to fetch posts:', err);
 
     }
 };
+
+
+postsContainer.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('like-btn')) {
+        const postId = e.target.dataset.id;
+
+        try {
+            const response = await fetch(`http://localhost:5000/api/posts/${postId}/like`, {
+                method: 'POST',
+            headers: { 'Authorization': `Bearer ${token}`}
+            });
+
+            const result = await response.json();
+            fetchPosts();
+        } catch (err) {
+            console.error('Failed to like post', err);
+        }
+    }
+});
+
 
 // Logout
 logoutBtn.addEventListener('click', () => {

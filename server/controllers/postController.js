@@ -44,3 +44,28 @@ exports.getPosts = async (req, res) => {
 };
 
 
+// Add like to the post
+exports.toggleLike = async (req, res ) => {
+    try {
+        const post  = await Post.findById(req.params.id);
+        const userId = req.userId;
+
+        const isLiked = post.likes.includes(userId);
+
+        if (isLiked) {
+            post.likes.pull(userId);
+        } else {
+            post.likes.push(userId);
+        }
+
+        await post.save();
+
+        res.json({ success: true, likesCount: post.likes.length, liked: !isLiked });
+    } catch (err) {
+
+        res.status(500).json({ message: 'Failed to toggle like', error: err.message });
+
+    }
+};
+
+

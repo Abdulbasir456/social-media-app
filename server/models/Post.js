@@ -22,7 +22,12 @@ const postSchema = new mongoose.Schema({
     image: {
         type: String,
         default: null
-    }
+    },
+    
+    likes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
         
 });
 
