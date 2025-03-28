@@ -22,6 +22,11 @@ A full-stack social media application built with:
 - **Like functionality added**  
   - Users can like their own posts.  
   - Likes update dynamically on the UI.
+- **Comment functionality added** 
+  - Users can comment on posts.  
+  - Comments are stored and displayed under posts.
+
+
 
 
 ## Folder Structure

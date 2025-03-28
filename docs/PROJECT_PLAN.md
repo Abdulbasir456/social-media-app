@@ -46,3 +46,5 @@
 **Image Upload for Posts – Implemented.**  
 **Post Display Styling – Improved.**  
 **Responsive Dashboard – Implemented.**
+**Post Like Functionality - Implemented.**
+**Post Comment Functionality - Implemented.**

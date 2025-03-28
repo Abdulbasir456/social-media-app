@@ -53,4 +53,10 @@
   - **Headers:** `{ "Authorization": "Bearer <JWT_TOKEN>" }`  
   - **Response:** `{  "success": true, "likesCount": 5, "liked": true }`  
 
+  - **POST** `/posts/:id/comment`  
+  - **Description:** Add a comment to a post.  
+  - **Headers:** `{ "Authorization": "Bearer <JWT_TOKEN>" }`  
+  - **Request Body:** `{ "text": "string" }`  
+  - **Response:** `{ "message": "Comment added successfully", "comment": { "id": "string", "text": "string", "createdAt": "date" } }`
+
 

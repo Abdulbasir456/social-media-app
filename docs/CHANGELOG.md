@@ -48,4 +48,10 @@
 - **Like functionality for posts**
 - **Updated UI for like button interaction**
 
+## [0.11.0] - 2025-03-28
+### Added
+- **Comment functionality for posts**  
+- **Users can add comments to any post.**  
+- **Comments are stored and displayed below the respective post.**
+
 
