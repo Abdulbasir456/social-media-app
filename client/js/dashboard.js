@@ -128,16 +128,44 @@ const fetchPosts = async () => {
                 imageHTML = `<img src="http://localhost:5000${post.image}" alt="Post image" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">`;
             }
 
+            // Render comments section
+            let commentsHTML = '';
+            if (post.comments && post.comments.length > 0 ) {
+                commentsHTML = post.comments.map(comment => `
+                    <p><strong>${comment.author?.username || 'Unknown user'}:</strong> ${comment.body}</p>
+                    `).join('');
+            } else {
+                commentsHTML = '<p>No comments yet </p>';
+            }
+
             postElement.innerHTML = `
             <p><strong>${post.userId?.username || 'Unknown User'}</strong> · <small>${new Date(post.createdAt).toLocaleString()}</small></p>
             <p>${post.content || ''}</p>
             ${imageHTML}
             <p>❤️ ${post.likes?.length || 0} <button class="like-btn" data-id="${post._id}">Like</button></p>
             <hr>
+            <p class="toggle-comments" data-id="${post._id}" style="cursor: pointer; color: blue;">Comments</p>
+            <div class="comments-section" id="comments-${post._id}" style="display: none;">
+                ${commentsHTML}
+             </div>
+             <div>
+                <input type="text" class="comment-input" data-id="${post._id}" placeholder="Write a comment..." />
+                <button class="comment-btn" data-id="${post._id}">Comment</button>
+            </div>
             `;
+
             postsContainer.appendChild(postElement);
         });
 
+        // Toggle event listener for comments
+        postsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('toggle-comments')) {
+                const postId = e.target.dataset.id;
+                const commentsSection = document.getElementById(`comments-${postId}`);
+                commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
+            }
+        });
+            
     } catch (err) {
         console.error('Failed to fetch posts:', err);
 
@@ -146,19 +174,43 @@ const fetchPosts = async () => {
 
 
 postsContainer.addEventListener('click', async (e) => {
-    if (e.target.classList.contains('like-btn')) {
-        const postId = e.target.dataset.id;
+    const postId = e.target.dataset.id;
 
+    // Like button functionality
+    if (e.target.classList.contains('like-btn')) {
         try {
             const response = await fetch(`http://localhost:5000/api/posts/${postId}/like`, {
                 method: 'POST',
-            headers: { 'Authorization': `Bearer ${token}`}
+                headers: { 'Authorization': `Bearer ${token}` }
             });
 
-            const result = await response.json();
-            fetchPosts();
+            await response.json();
+            fetchPosts();  // Refresh posts after like
         } catch (err) {
             console.error('Failed to like post', err);
+        }
+    }
+
+    // Comment button functionality
+    if (e.target.classList.contains('comment-btn')) {
+        const commentInput = document.querySelector(`.comment-input[data-id="${postId}"]`);
+        const body = commentInput.value;
+
+        if (!body.trim()) return;
+
+        try {
+            await fetch(`http://localhost:5000/api/posts/${postId}/comment`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ body })
+            });
+
+            fetchPosts();  // Refresh posts to show new comments
+        } catch (err) {
+            console.error('Failed to post comment', err);
         }
     }
 });

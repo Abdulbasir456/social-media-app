@@ -69,3 +69,30 @@ exports.toggleLike = async (req, res ) => {
 };
 
 
+exports.addComment = async (req, res ) => {
+    try {
+        const { body } = req.body || {};
+        const post = await Post.findById(req.params.id);
+
+        if (!post) {
+            return res.status(400).json({ message: 'Post not found' });
+        }
+
+        if (!req.userId) {
+            return res.status(401).json({ message: 'User not authenticated' });
+        }
+
+
+        post.comments.push({ body, author: req.userId, createdAt: new Date() });
+        await post.save();
+
+        res.json({ success: true, comments: post.comments });
+
+    } catch (err) {
+        console.error('Error adding comment', err);
+        res.status(500).json({ message: 'Failed to add comment', error: err.message });
+
+    }
+};
+
+
