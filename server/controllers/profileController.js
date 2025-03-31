@@ -1,4 +1,5 @@
 const Profile = require('../models/Profile');
+const User = require('../models/User');
 
 //Fetch User Profile
 exports.getProfile = async (req, res ) => {
@@ -31,3 +32,54 @@ exports.updateProfile = async (req, res ) => {
 
     }
 };
+
+
+// Follow/Unfollow User
+exports.followUser = async (req, res) => {
+    try {
+      const targetUserId = req.params.id;
+      const currentUserId = req.userId;
+
+      console.log("Target User ID:", targetUserId);
+      console.log("Current User ID:", currentUserId);
+  
+      // Cannot follow oneself
+      if (targetUserId === currentUserId) {
+        return res.status(400).json({ message: "You cannot follow yourself" });
+      }
+  
+      // Fetch both profiles in a single query
+      const [currentUserProfile, targetUserProfile] = await Promise.all([
+        Profile.findOne({ userId: currentUserId }),
+        Profile.findOne({ userId: targetUserId })
+      ]);
+  
+      if (!targetUserProfile) {
+        return res.status(404).json({ message: "User to follow not found" });
+      }
+  
+      // Check if the current user already follows the target user
+      const isFollowing = currentUserProfile.following.includes(targetUserId);
+  
+      if (isFollowing) {
+        // Unfollow
+        currentUserProfile.following.pull(targetUserId);
+        targetUserProfile.followers.pull(currentUserId);
+        await Promise.all([currentUserProfile.save(), targetUserProfile.save()]);
+        return res.json({ message: "Successfully unfollowed the user" });
+      } else {
+        // Follow
+        currentUserProfile.following.push(targetUserId);
+        targetUserProfile.followers.push(currentUserId);
+        await Promise.all([currentUserProfile.save(), targetUserProfile.save()]);
+        return res.json({ message: "Successfully followed the user" });
+      }
+  
+    } catch (err) {
+      console.error('Failed to follow/unfollow user:', err.message);  // Improved error logging
+      res.status(500).json({ message: 'Failed to follow/unfollow user', error: err.message });
+    }
+  };
+  
+
+

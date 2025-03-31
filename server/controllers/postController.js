@@ -44,6 +44,27 @@ exports.getPosts = async (req, res) => {
 };
 
 
+
+/*
+exports.getPosts = async (req, res) => {
+    try {
+      const userProfile = await Profile.findOne({ userId: req.userId });
+  
+      const followedUserIds = userProfile.following;
+  
+      const posts = await Post.find({ userId: { $in: [req.userId, ...followedUserIds] } })
+        .populate('userId', 'username')
+        .sort({ createdAt: -1 });
+  
+      res.json(posts);
+    } catch (err) {
+      res.status(500).json({ message: 'Failed to fetch posts', error: err.message });
+    }
+  };
+  */
+
+
+
 // Add like to the post
 exports.toggleLike = async (req, res ) => {
     try {
@@ -94,5 +115,7 @@ exports.addComment = async (req, res ) => {
 
     }
 };
+
+
 
 

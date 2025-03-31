@@ -9,6 +9,10 @@ const postBtn = document.getElementById('postBtn');
 const postsContainer = document.getElementById('posts');
 const logoutBtn = document.getElementById('logoutBtn');
 
+
+const actualUserId = "67d4462af07dfc4f881c3004"; // Example ID (replace with real data)
+const followBtn = document.getElementById('followBtn');
+
 // Get the JWT token from localStorage
 const token = localStorage.getItem('token');
 
@@ -231,9 +235,36 @@ postsContainer.addEventListener('click', async (e) => {
         }
 }
 
-
-
 });
+
+
+followBtn.setAttribute('data-user-id', actualUserId);
+followBtn.addEventListener('click', async () => {
+    const targetUserId = followBtn.dataset.userId;
+
+    if (!targetUserId) {
+        alert('User ID not found for follow operations');
+        return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:5000/api/profile/${targetUserId}/follow`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+  
+      const data = await response.json();
+      alert(data.message);
+      // Update button text based on response
+      followBtn.textContent = data.message.includes("unfollowed") ? "Follow" : "Unfollow";
+    } catch (err) {
+      console.error('Error following/unfollowing user:', err);
+    }
+  });
+  
+
+
+
 
 
 // Logout
