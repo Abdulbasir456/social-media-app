@@ -191,7 +191,7 @@ postsContainer.addEventListener('click', async (e) => {
         }
     }
 
-    // Comment button functionality
+        // Comment button functionality
     if (e.target.classList.contains('comment-btn')) {
         const commentInput = document.querySelector(`.comment-input[data-id="${postId}"]`);
         const body = commentInput.value;
@@ -199,7 +199,7 @@ postsContainer.addEventListener('click', async (e) => {
         if (!body.trim()) return;
 
         try {
-            await fetch(`http://localhost:5000/api/posts/${postId}/comment`, {
+            const response = await fetch(`http://localhost:5000/api/posts/${postId}/comment`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -208,11 +208,31 @@ postsContainer.addEventListener('click', async (e) => {
                 body: JSON.stringify({ body })
             });
 
-            fetchPosts();  // Refresh posts to show new comments
+            if (response.ok) {
+                const result = await response.json();
+
+                // Update the comments section directly in the DOM
+                const commentsSection = document.getElementById(`comments-${postId}`);
+                const newComment = document.createElement('p');
+                newComment.innerHTML = `<strong>You:</strong> ${body}`;
+
+                // Append the new comment to the comments section
+                commentsSection.appendChild(newComment);
+
+                // Clear the input field after adding the comment
+                commentInput.value = '';
+
+                // Make sure the comments section is visible
+                commentsSection.style.display = 'block';
+            }
+
         } catch (err) {
             console.error('Failed to post comment', err);
         }
-    }
+}
+
+
+
 });
 
 
