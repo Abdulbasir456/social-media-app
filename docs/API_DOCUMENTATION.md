@@ -60,3 +60,19 @@
   - **Response:** `{ "message": "Comment added successfully", "comment": { "id": "string", "text": "string", "createdAt": "date" } }`
 
 
+### User Search & Follow System
+
+- **GET** /users/search?username=abc  
+  - **Description:** Search for users by username.  
+  - **Headers:** { "Authorization": "Bearer <JWT_TOKEN>" }  
+  - **Response:** [{ "id": "string", "username": "string", "bio": "string", "profilePicture": "string" }]
+
+- **POST** /users/:id/follow  
+  - **Description:** Follow a user by their ID.  
+  - **Headers:** { "Authorization": "Bearer <JWT_TOKEN>" }  
+  - **Response:** { "message": "Followed successfully" }
+
+- **POST** /users/:id/unfollow  
+  - **Description:** Unfollow a user by their ID.  
+  - **Headers:** { "Authorization": "Bearer <JWT_TOKEN>" }  
+  - **Response:** { "message": "Unfollowed successfully" }

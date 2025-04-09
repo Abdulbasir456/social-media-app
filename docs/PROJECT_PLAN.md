@@ -48,3 +48,12 @@
 **Responsive Dashboard – Implemented.**
 **Post Like Functionality - Implemented.**
 **Post Comment Functionality - Implemented.**
+
+**User Search – Implemented**
+- Search other users by full username.
+- Display basic profile info in results.
+
+**Follow/Unfollow Feature – Implemented**
+- Users can follow or unfollow others.
+- Backend handles follow state and updates accordingly.
+

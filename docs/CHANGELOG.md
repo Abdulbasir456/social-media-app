@@ -54,4 +54,9 @@
 - **Users can add comments to any post.**  
 - **Comments are stored and displayed below the respective post.**
 
+## [0.12.0] - 2025-04-09
+### Added
+- **User search feature** with keyword-based querying by username.
+- **Follow/Unfollow functionality**:
+  - Users can follow and unfollow each other.
 

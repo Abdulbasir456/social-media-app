@@ -25,6 +25,12 @@ A full-stack social media application built with:
 - **Comment functionality added** 
   - Users can comment on posts.  
   - Comments are stored and displayed under posts.
+- **User search functionality added**
+  - Users can search for other users by username.
+  - Search results display relevant user profiles dynamically.
+
+- **Follow/Unfollow feature implemented**
+  - Users can follow or unfollow other users.
 
 
 
