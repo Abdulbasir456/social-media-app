@@ -18,4 +18,7 @@ router.post('/:id/like', authMiddleware, postController.toggleLike);
 // Add comment (apply express.json() only here)
 router.post('/:id/comment', authMiddleware, express.json(), postController.addComment);
 
+// Fetch posts by user ID
+router.get('/user/:id', authMiddleware, postController.getUserPosts);
+
 module.exports = router;

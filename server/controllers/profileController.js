@@ -80,6 +80,58 @@ exports.followUser = async (req, res) => {
       res.status(500).json({ message: 'Failed to follow/unfollow user', error: err.message });
     }
   };
+
+
+  exports.getOtherUserProfile = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const profile = await Profile.findOne({ userId }).populate('userId', 'username');
+        if (!profile) {
+            return res.status(404).json({ message: 'User profile not found' });
+        }
+        res.json(profile);
+    } catch (err) {
+        res.status(500).json({ message: 'Failed to fetch user profile', error: err.message });
+    }
+};
+
+
+// Search for users by username
+exports.searchUsers = async (req, res) => {
+    try {
+        const username = req.params.username;
+
+        // Find users whose username matches (case-insensitive)
+        const users = await User.find({ username: { $regex: new RegExp(username, 'i') } });
+
+        if (users.length === 0) {
+            return res.status(404).json({ message: 'No users found' });
+        }
+
+        // Format the users to include userId in the response
+        const formattedUsers = users.map(user => ({
+            _id: user._id,   // MongoDB Object ID
+            username: user.username,
+            email: user.email,
+            bio: user.bio || 'No bio available',
+            profilePicture: user.profilePicture || 'No picture available',
+            userId: user._id  // Include userId for consistency
+        }));
+
+        res.json(formattedUsers);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error searching users', error: error.message });
+    }
+};
+
+
+
+
+
+
+
+
   
 
 

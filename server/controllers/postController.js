@@ -44,27 +44,6 @@ exports.getPosts = async (req, res) => {
 };
 
 
-
-/*
-exports.getPosts = async (req, res) => {
-    try {
-      const userProfile = await Profile.findOne({ userId: req.userId });
-  
-      const followedUserIds = userProfile.following;
-  
-      const posts = await Post.find({ userId: { $in: [req.userId, ...followedUserIds] } })
-        .populate('userId', 'username')
-        .sort({ createdAt: -1 });
-  
-      res.json(posts);
-    } catch (err) {
-      res.status(500).json({ message: 'Failed to fetch posts', error: err.message });
-    }
-  };
-  */
-
-
-
 // Add like to the post
 exports.toggleLike = async (req, res ) => {
     try {
@@ -113,6 +92,25 @@ exports.addComment = async (req, res ) => {
         console.error('Error adding comment', err);
         res.status(500).json({ message: 'Failed to add comment', error: err.message });
 
+    }
+};
+
+// Get posts by a specific user
+exports.getUserPosts = async (req, res) => {
+    try {
+        const userId = req.params.id;
+
+        // Fetch posts belonging to the user
+        const posts = await Post.find({ userId }).populate('userId', 'username');
+        
+        if (!posts) {
+            return res.status(404).json({ message: 'No posts found for this user' });
+        }
+
+        res.json(posts);
+    } catch (error) {
+        console.error('Error fetching user posts:', error);
+        res.status(500).json({ message: 'Error fetching user posts', error: error.message });
     }
 };
 
