@@ -14,6 +14,7 @@ const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const searchResults = document.getElementById('searchResults');
 
+
 // Get the JWT token from localStorage
 const token = localStorage.getItem('token');
 
@@ -49,6 +50,8 @@ if (!loggedInUserId) {
   window.location.href = '/index.html';
 }
 
+
+let currentlyViewingUserId = loggedInUserId;
 // -------- API calls & event handlers (unchanged except actualUserId → loggedInUserId) --------
 
 const fetchProfile = async (userId = null) => {
@@ -215,53 +218,61 @@ const fetchPosts = async () => {
 };
 
 postsContainer.addEventListener('click', async e => {
-  const postId = e.target.dataset.id;
-
-  if (e.target.classList.contains('like-btn')) {
-    try {
-      await fetch(`http://localhost:5000/api/posts/${postId}/like`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      fetchPosts();
-    } catch (err) {
-      console.error('Failed to like post', err);
-    }
-  }
-
-  if (e.target.classList.contains('comment-btn')) {
-    const commentInput = document.querySelector(
-      `.comment-input[data-id="${postId}"]`
-    );
-    const body = commentInput.value;
-    if (!body.trim()) return;
-
-    try {
-      const response = await fetch(
-        `http://localhost:5000/api/posts/${postId}/comment`,
-        {
+    const postId = e.target.dataset.id;
+  
+    if (e.target.classList.contains('like-btn')) {
+      try {
+        await fetch(`http://localhost:5000/api/posts/${postId}/like`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ body }),
-        }
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        // ✅ Fix: Fetch based on currently viewed user
+        currentlyViewingUserId === loggedInUserId
+          ? fetchPosts()
+          : fetchUserPosts(currentlyViewingUserId);
+      } catch (err) {
+        console.error('Failed to like post', err);
+      }
+    }
+  
+    if (e.target.classList.contains('comment-btn')) {
+      const commentInput = document.querySelector(
+        `.comment-input[data-id="${postId}"]`
       );
+      const body = commentInput.value;
+      if (!body.trim()) return;
+  
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/posts/${postId}/comment`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ body }),
+          }
+        );
+  
+        if (response.ok) {
+          // ✅ Also reload the correct set of posts
+          currentlyViewingUserId === loggedInUserId
+            ? fetchPosts()
+            : fetchUserPosts(currentlyViewingUserId);
 
-      if (response.ok) {
         const commentsSection = document.getElementById(`comments-${postId}`);
         const newComment = document.createElement('p');
         newComment.innerHTML = `<strong>You:</strong> ${body}`;
         commentsSection.appendChild(newComment);
         commentInput.value = '';
         commentsSection.style.display = 'block';
+        }
+      } catch (err) {
+        console.error('Failed to post comment', err);
       }
-    } catch (err) {
-      console.error('Failed to post comment', err);
     }
-  }
-});
+  });
 
 // ✅ No hardcoding, set follow button based on login
 followBtn.setAttribute('data-user-id', loggedInUserId);
@@ -306,6 +317,8 @@ searchResults.addEventListener('click', e => {
 });
 
 const viewUserDashboard = async userId => {
+
+    currentlyViewingUserId = userId; // ✅ Update tracker
   try {
     const response = await fetch(`http://localhost:5000/api/profile/${userId}`, {
       headers: { Authorization: `Bearer ${token}` },
