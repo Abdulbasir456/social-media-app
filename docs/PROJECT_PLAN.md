@@ -57,3 +57,9 @@
 - Users can follow or unfollow others.
 - Backend handles follow state and updates accordingly.
 
+**Post Like Functionality – Updated**
+- Users can now like **any post**, not just their own.
+
+**Post Comment Functionality – Updated**
+- Users can now comment on **any post**.
+

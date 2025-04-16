@@ -20,10 +20,10 @@ A full-stack social media application built with:
   - Dashboard page is now fully responsive.
   - Post display styling optimised for different screen sizes.
 - **Like functionality added**  
-  - Users can like their own posts.  
+  - Users can now like **any post**, not just their own.
   - Likes update dynamically on the UI.
 - **Comment functionality added** 
-  - Users can comment on posts.  
+  - Users can comment on **any post**. 
   - Comments are stored and displayed under posts.
 - **User search functionality added**
   - Users can search for other users by username.

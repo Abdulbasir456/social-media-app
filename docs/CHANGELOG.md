@@ -44,13 +44,12 @@
 - **Optimised post display for different screen sizes**
 
 ## [0.10.0] - 2025-03-24
-### Added
-- **Like functionality for posts**
-- **Updated UI for like button interaction**
+### Updated
+- **Like feature:** Now supports liking other users' posts.
 
 ## [0.11.0] - 2025-03-28
-### Added
-- **Comment functionality for posts**  
+### Updated
+- **Comment feature:** Now supports commenting on posts by other users. 
 - **Users can add comments to any post.**  
 - **Comments are stored and displayed below the respective post.**
 
