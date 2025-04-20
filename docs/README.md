@@ -28,10 +28,11 @@ A full-stack social media application built with:
 - **User search functionality added**
   - Users can search for other users by username.
   - Search results display relevant user profiles dynamically.
-
 - **Follow/Unfollow feature implemented**
   - Users can follow or unfollow other users.
-
+- **UI Enhancements:**
+  - Login and Register pages redesigned with improved styling.
+  - Dashboard UI updated for a cleaner layout and better user experience.
 
 
 

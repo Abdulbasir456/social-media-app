@@ -63,3 +63,7 @@
 **Post Comment Functionality – Updated**
 - Users can now comment on **any post**.
 
+**UI Styling – Improved**
+- Login, Register, and Dashboard pages restyled for a better user experience.
+
+

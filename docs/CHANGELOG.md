@@ -59,3 +59,9 @@
 - **Follow/Unfollow functionality**:
   - Users can follow and unfollow each other.
 
+## [0.13.0] - 2025-04-20
+### Updated
+- Redesigned login and register pages with enhanced styling.
+- Improved layout and appearance of the dashboard page.
+
+
