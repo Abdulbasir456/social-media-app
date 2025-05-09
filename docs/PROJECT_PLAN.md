@@ -39,31 +39,15 @@
 - MongoDB Atlas connected.
 - Environment configured using dotenv.
 - User registration and login functionality implemented with JWT.
-- UI improved: toggle forms, responsive layout, validation styling.
-- Profile functionality next
-- User Profile Update (Bio & Profile Picture) – Implemented
-**Post Creation and Fetching - implemented.**
-**Image Upload for Posts – Implemented.**  
-**Post Display Styling – Improved.**  
-**Responsive Dashboard – Implemented.**
-**Post Like Functionality - Implemented.**
-**Post Comment Functionality - Implemented.**
+- Profile functionality implemented: Bio & Profile Picture updates.
+- Post creation and fetching implemented.
+- Image upload for posts implemented.
+- Responsive dashboard implemented.
+- Like functionality implemented.
+- Comment functionality implemented.
+- User search implemented.
+- Follow/Unfollow feature implemented.
+- UI styling improved for Login, Register, and Dashboard pages.
 
-**User Search – Implemented**
-- Search other users by full username.
-- Display basic profile info in results.
-
-**Follow/Unfollow Feature – Implemented**
-- Users can follow or unfollow others.
-- Backend handles follow state and updates accordingly.
-
-**Post Like Functionality – Updated**
-- Users can now like **any post**, not just their own.
-
-**Post Comment Functionality – Updated**
-- Users can now comment on **any post**.
-
-**UI Styling – Improved**
-- Login, Register, and Dashboard pages restyled for a better user experience.
 
 

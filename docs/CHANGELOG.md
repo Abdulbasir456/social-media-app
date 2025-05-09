@@ -64,4 +64,16 @@
 - Redesigned login and register pages with enhanced styling.
 - Improved layout and appearance of the dashboard page.
 
+## [0.14.0] - 2025-05-09
+### Added
+- Users can now comment on any post.
+- Follow/unfollow system fully functional with backend and UI support.
+- Users can search for other users by username.
+- Likes and comments now dynamically update in UI.
+
+### Improved
+- Dashboard responsiveness further refined.
+- Cleaner post display layout across all screen sizes.
+
+
 
