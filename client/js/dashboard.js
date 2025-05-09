@@ -23,7 +23,7 @@ if (!token) {
   window.location.href = '/index.html';
 }
 
-// ✅ Decode JWT to get logged-in user ID
+// Decode JWT to get logged-in user ID
 function parseJwt(token) {
   try {
     const base64Url = token.split('.')[1];
@@ -52,7 +52,7 @@ if (!loggedInUserId) {
 
 
 let currentlyViewingUserId = loggedInUserId;
-// -------- API calls & event handlers (unchanged except actualUserId → loggedInUserId) --------
+// API calls & event handlers (unchanged except actualUserId → loggedInUserId) --------
 
 const fetchProfile = async (userId = null) => {
   try {
@@ -226,7 +226,7 @@ postsContainer.addEventListener('click', async e => {
           method: 'POST',
           headers: { Authorization: `Bearer ${token}` },
         });
-        // ✅ Fix: Fetch based on currently viewed user
+        // Fetch based on currently viewed user
         currentlyViewingUserId === loggedInUserId
           ? fetchPosts()
           : fetchUserPosts(currentlyViewingUserId);
@@ -256,7 +256,7 @@ postsContainer.addEventListener('click', async e => {
         );
   
         if (response.ok) {
-          // ✅ Also reload the correct set of posts
+          // Also reload the correct set of posts
           currentlyViewingUserId === loggedInUserId
             ? fetchPosts()
             : fetchUserPosts(currentlyViewingUserId);
@@ -274,7 +274,7 @@ postsContainer.addEventListener('click', async e => {
     }
   });
 
-// ✅ No hardcoding, set follow button based on login
+// set follow button based on login
 followBtn.setAttribute('data-user-id', loggedInUserId);
 
 searchBtn.addEventListener('click', async () => {
@@ -318,7 +318,7 @@ searchResults.addEventListener('click', e => {
 
 const viewUserDashboard = async userId => {
 
-    currentlyViewingUserId = userId; // ✅ Update tracker
+    currentlyViewingUserId = userId; //  Update tracker
   try {
     const response = await fetch(`http://localhost:5000/api/profile/${userId}`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -333,7 +333,7 @@ const viewUserDashboard = async userId => {
     followBtn.textContent = 'Follow';
     followBtn.style.display = 'block';
 
-    // ✅ Only allow editing profile if viewing your own
+    // Only allow editing profile if viewing your own
     if (userId !== loggedInUserId) {
       updateProfileBtn.style.display = 'none';
       newBio.disabled = true;
@@ -413,7 +413,7 @@ logoutBtn.addEventListener('click', () => {
   window.location.href = './index.html';
 });
 
-// ✅ Load current logged-in user's dashboard
+// Load current logged-in user's dashboard
 viewUserDashboard(loggedInUserId);
 
 
